@@ -1,0 +1,5 @@
+export {default as HomeScreen} from './home-screen'
+export {default as ReelsScreen} from './reels-screen'
+export {default as SearchScreen} from './search-screen'
+export {default as ProfileScreen} from './profile-screen'
+export {default as ShoppingScreen} from './shopping-screen'
