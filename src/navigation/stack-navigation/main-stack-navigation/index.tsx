@@ -14,7 +14,11 @@ const NavStack = createNativeStackNavigator();
 
 const HomeStack= () => {
     return (
-        <NavStack.Navigator>
+        <NavStack.Navigator
+        screenOptions={{
+            headerShown: false,
+        }}
+        >
             <NavStack.Screen name="HomeScreen" component={HomeScreen} />
         </NavStack.Navigator>
     );
@@ -22,7 +26,11 @@ const HomeStack= () => {
 
 const SearchStack= () => {
     return (
-        <NavStack.Navigator>
+        <NavStack.Navigator
+        screenOptions={{
+            headerShown: false,
+        }}
+        >
             <NavStack.Screen name="SearchScreen" component={SearchScreen} />
         </NavStack.Navigator>
     );
@@ -30,7 +38,11 @@ const SearchStack= () => {
 
 const ShoppingStack= () => {
     return (
-        <NavStack.Navigator>
+        <NavStack.Navigator
+        screenOptions={{
+            headerShown: false,
+        }}
+        >
             <NavStack.Screen name="ShoppingScreen" component={ShoppingScreen} />
         </NavStack.Navigator>
     );
@@ -38,7 +50,11 @@ const ShoppingStack= () => {
 
 const ReelsStack= () => {
     return (
-        <NavStack.Navigator>
+        <NavStack.Navigator
+        screenOptions={{
+            headerShown: false,
+        }}
+        >
             <NavStack.Screen name="ReelsScreen" component={ReelsScreen} />
         </NavStack.Navigator>
     );
@@ -46,7 +62,11 @@ const ReelsStack= () => {
 
 const ProfileStack= () => {
     return (
-        <NavStack.Navigator>
+        <NavStack.Navigator
+        screenOptions={{
+            headerShown: false,
+        }}
+        >
             <NavStack.Screen name="ProfileScreen" component={ProfileScreen} />
         </NavStack.Navigator>
     );
