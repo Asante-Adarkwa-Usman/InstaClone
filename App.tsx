@@ -2,13 +2,14 @@ import * as React from 'react';
 
 import { SafeAreaView, useColorScheme } from 'react-native'
 import NavSwitcher from './src/navigation';
-import { adaptNavigationTheme, MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import {
   NavigationContainer,
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from '@react-navigation/native';
 import {
+  Provider as PaperProvider,
+  adaptNavigationTheme,
   MD3DarkTheme,
   MD3LightTheme,
 } from 'react-native-paper';
@@ -25,10 +26,11 @@ const CombinedDarkTheme = merge(MD3LightTheme, DarkTheme);
 
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const scheme = useColorScheme() === 'dark' ? CombinedDarkTheme : CombinedDefaultTheme
+
   return (
-    <PaperProvider theme={isDarkMode ? CombinedDarkTheme : CombinedDefaultTheme} >
-      <NavigationContainer theme={isDarkMode ? CombinedDarkTheme : CombinedDefaultTheme}>
+    <PaperProvider theme={scheme} >
+      <NavigationContainer theme={scheme}>
         <SafeAreaView style={{ flex: 1 }}>
           <NavSwitcher />
         </SafeAreaView>

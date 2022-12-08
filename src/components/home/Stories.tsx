@@ -4,14 +4,17 @@ import {
     Text,
     ScrollView,
     Image,
-    StyleSheet
+    StyleSheet,
+    useColorScheme
 } from 'react-native'
 import {
     USERS
 } from '../../data/users'
+import theme from '../../theme'
 
 
 const Stories = () => {
+    const scheme = useColorScheme() === 'dark' ? theme.colors.offWhite : theme.colors.black
     return (
         <View style={{ marginBottom: 13 }}>
             <ScrollView horizontal={true}
@@ -25,7 +28,7 @@ const Stories = () => {
                             }}>
                             <Image source={{ uri: story.image }}
                                 style={styles.story} />
-                            <Text>
+                            <Text style={{ color: scheme }}>
                                 {
                                     story.user.length > 11 ? story.user.slice(0, 10).toLowerCase() + '... ' : story.user.toLowerCase()
                                 }
@@ -43,7 +46,7 @@ const styles = StyleSheet.create({
     story: {
         width: 70,
         height: 70,
-        marginLeft: 6,
+        marginLeft: 10,
         borderWidth: 3,
         borderColor: '#ff8401',
         borderRadius: 70,

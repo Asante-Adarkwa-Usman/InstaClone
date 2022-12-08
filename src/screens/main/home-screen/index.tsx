@@ -10,7 +10,9 @@ const HomeScreen = () => {
   return (
     <View style={{}}>
       <HomeHeader />
-      <ScrollView>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+      >
         <Stories />
         {
           POSTS.map((post, index) => (
