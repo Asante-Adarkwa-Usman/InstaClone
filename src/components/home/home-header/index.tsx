@@ -3,52 +3,50 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  useColorScheme
 } from 'react-native'
 import { IconButton } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/Ionicons';
-import theme from '../../../theme'
+import theme from '../../../theme';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const HomeHeader = () => {
+  const scheme = useColorScheme() === 'dark' ? theme.colors.offWhite : theme.colors.black
   return (
     <View style={styles.mainContainer}>
       <View style={styles.container}>
         <View>
-          <Text style={styles.textStyle}>Instagram</Text>
+          <Text style={[styles.textStyle, { color: scheme }]}>Instagram</Text>
         </View>
         <View style={styles.iconContainer}>
           <IconButton
+            iconColor={scheme}
             icon="chevron-down"
-
             size={22}
             onPress={() => console.log('Button Pressed')}
           />
         </View>
         <View style={styles.secondaryContainer}>
-          <View>
-            <IconButton
-              icon="plus-box-outline"
-
-              size={30}
-              onPress={() => console.log('Button Pressed')}
-            />
-          </View>
-          <View>
-            <IconButton
-              icon="heart-outline"
-
-              size={30}
-              onPress={() => console.log('Button Pressed')}
-            />
-          </View>
-          <View>
-            <TouchableOpacity>
-              <View style={styles.unreadMessageContainer}>
-                <Text style={styles.unreadMessageText}>5</Text>
-              </View>
-              <Icon name="chatbubble-ellipses-outline" size={30} />
-            </TouchableOpacity>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ marginHorizontal: theme.spacing.m }}>
+              <TouchableOpacity>
+                <Icon name="add-circle-outline" size={30} color={scheme} />
+              </TouchableOpacity>
+            </View>
+            <View style={{ marginRight: theme.spacing.m }}>
+              <TouchableOpacity>
+                <Icon name="heart-half" size={30} color={scheme} />
+              </TouchableOpacity>
+            </View>
+            <View>
+              <TouchableOpacity>
+                <View style={styles.unreadMessageContainer}>
+                  <Text style={styles.unreadMessageText}>5</Text>
+                </View>
+                <Icon name="chatbubble-ellipses-outline" size={30} color={scheme} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
@@ -79,7 +77,8 @@ const styles = StyleSheet.create({
   secondaryContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: theme.spacing.l
+    paddingHorizontal: theme.spacing.m,
+
   },
   unreadMessageContainer: {
     position: 'absolute',

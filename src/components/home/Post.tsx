@@ -4,11 +4,14 @@ import {
     Text,
     StyleSheet,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    useColorScheme
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Divider } from 'react-native-paper';
+import theme from '../../theme';
+import { color } from 'react-native-reanimated';
 
 type PostProps = {
     post: {
@@ -29,6 +32,7 @@ type PostProps = {
 }
 
 const Post = ({ post }: PostProps) => {
+
     return (
         <View style={{ marginBottom: 30 }}>
             <Divider />
@@ -47,37 +51,42 @@ const Post = ({ post }: PostProps) => {
 };
 
 // Post Header
-const PostHeader = ({ post }: PostProps) => (
-    <View style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        margin: 5,
-        alignItems: 'center'
-    }}>
+const PostHeader = ({ post }: PostProps) => {
+    const scheme = useColorScheme() === 'dark' ? theme.colors.offWhite : theme.colors.black
+    return (
         <View style={{
             flexDirection: 'row',
+            justifyContent: 'space-between',
+            margin: 5,
             alignItems: 'center'
         }}>
-            <Image
-                source={{ uri: post.imageUrl }}
-                style={styles.story} />
-            <Text
-                style={{
-                    marginLeft: 5,
-                    fontWeight: '700'
-                }}>
-                {post.user}
-            </Text>
+            <View style={{
+                flexDirection: 'row',
+                alignItems: 'center'
+            }}>
+                <Image
+                    source={{ uri: post.imageUrl }}
+                    style={styles.story} />
+                <Text
+                    style={{
+                        marginLeft: 5,
+                        fontWeight: '700',
+                        color: scheme
+                    }}>
+                    {post.user}
+                </Text>
+            </View>
+            <TouchableOpacity>
+                <Icon
+                    style={styles.icon}
+                    name="ellipsis-horizontal-outline"
+                    size={20}
+                    color={scheme}
+                />
+            </TouchableOpacity>
         </View>
-        <TouchableOpacity>
-            <Icon
-                style={styles.icon}
-                name="ellipsis-horizontal-outline"
-                size={20}
-            />
-        </TouchableOpacity>
-    </View>
-);
+    );
+}
 
 // Post Image
 const PostImage = ({ post }: PostProps) => (
@@ -96,145 +105,169 @@ const PostImage = ({ post }: PostProps) => (
 );
 
 // Post Footer
-const PostFooter = () => (
-    <View style={{ flexDirection: 'row' }}>
+const PostFooter = () => {
+    const scheme = useColorScheme() === 'dark' ? theme.colors.offWhite : theme.colors.black
+    return (
+        <View style={{ flexDirection: 'row' }}>
+            <View
+                style={{
+                    flexDirection: 'row',
+                    width: "32%",
+                    justifyContent: 'space-between',
+
+                }}>
+                <TouchableOpacity>
+                    <Icon
+                        name="heart-outline"
+                        size={25}
+                        color={scheme}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Icon
+                        name="chatbubble-outline"
+                        size={25}
+                        color={scheme}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Icon
+                        style={styles.shareicon}
+                        name="send-outline"
+                        size={25}
+                        color={scheme}
+                    />
+                </TouchableOpacity>
+            </View>
+            <View
+                style={{
+                    flex: 1,
+                    alignItems: 'flex-end'
+                }}>
+                <TouchableOpacity>
+                    <Icon
+                        name="bookmark-outline"
+                        size={25}
+                        color={scheme}
+                    />
+                </TouchableOpacity>
+            </View>
+        </View>
+    );
+}
+
+// Post Likes
+const PostLikes = ({ post }: PostProps) => {
+    const scheme = useColorScheme() === 'dark' ? theme.colors.offWhite : theme.colors.black
+    return (
         <View
             style={{
                 flexDirection: 'row',
-                width: "32%",
-                justifyContent: 'space-between'
-            }}>
-            <TouchableOpacity>
-                <Icon
-                    name="heart-outline"
-                    size={25}
-                />
-            </TouchableOpacity>
-            <TouchableOpacity>
-                <Icon
-                    name="chatbubble-outline"
-                    size={25}
-                />
-            </TouchableOpacity>
-            <TouchableOpacity>
-                <Icon
-                    style={styles.shareicon}
-                    name="send-outline"
-                    size={25}
-                />
-            </TouchableOpacity>
-        </View>
-        <View
-            style={{
-                flex: 1,
-                alignItems: 'flex-end'
-            }}>
-            <TouchableOpacity>
-                <Icon
-                    name="bookmark-outline"
-                    size={25}
-                />
-            </TouchableOpacity>
-        </View>
-    </View>
-);
-
-// Post Likes
-const PostLikes = ({ post }: PostProps) => (
-    <View
-        style={{
-            flexDirection: 'row',
-            marginTop: 4,
-            marginLeft: 2
-        }}>
-        <Text
-            style={{
-                fontWeight: '600',
-                marginLeft: 5
-            }}>
-            {
-                post.likes.toLocaleString('en')
-            }
-            likes
-        </Text>
-    </View>
-);
-
-// Post Caption
-const PostCaption = ({ post }: PostProps) => (
-    <View
-        style={{
-            flexDirection: 'row',
-            marginTop: 5,
-            marginLeft: 2
-        }}>
-        <Text
-            style={{
-                flexWrap: 'wrap',
-                flex: 1
+                marginTop: 4,
+                marginLeft: 2
             }}>
             <Text
                 style={{
-                    fontWeight: '600'
+                    fontWeight: '600',
+                    marginLeft: 5,
+                    color: scheme
                 }}>
-                {post.user}
+                {
+                    post.likes.toLocaleString('en')
+                }
+                likes
             </Text>
-            <Text> {post.caption} </Text>
-        </Text>
-    </View>
-);
+        </View>
+    );
+}
+
+// Post Caption
+const PostCaption = ({ post }: PostProps) => {
+    const scheme = useColorScheme() === 'dark' ? theme.colors.offWhite : theme.colors.black
+    return (
+        <View
+            style={{
+                flexDirection: 'row',
+                marginTop: 5,
+                marginLeft: 2
+            }}>
+            <Text
+                style={{
+                    flexWrap: 'wrap',
+                    flex: 1,
+                    color: scheme
+                }}>
+                <Text
+                    style={{
+                        fontWeight: '600'
+                    }}>
+                    {post.user}
+                </Text>
+                <Text> {post.caption} </Text>
+            </Text>
+        </View>
+    );
+}
 
 // Post Comment Section
 
-const PostCommentSection = ({ post }: PostProps) => (
-    <View
-        style={{
-            flexDirection: 'row',
-            marginTop: 5
-        }}>
-        {
-            !!post.comments.length && (
-                <Text
-                    style={{
-                        //color: 'gray',
-                        flexWrap: 'wrap',
-                        flex: 1
-                    }}>
-                    {post.comments.length > 1 ? 'all' : ''}
-                    {post.comments.length}
-                    {post.comments.length > 1 ? 'commnets' : 'comment'}
-                </Text>
-            )
-        }
-    </View>
-);
-
-// Post Comment
-const PostComment = ({ post }: PostProps) => (
-    <>
-        {
-            post.comments.map((comment, index) => (
-                <View
-                    key={index}
-                    style={{
-                        flexDirection: 'row',
-                        marginTop: 5
-                    }}>
+const PostCommentSection = ({ post }: PostProps) => {
+    const scheme = useColorScheme() === 'dark' ? theme.colors.offWhite : theme.colors.black
+    return (
+        <View
+            style={{
+                flexDirection: 'row',
+                marginTop: 5
+            }}>
+            {
+                !!post.comments.length && (
                     <Text
                         style={{
+                            color: scheme,
                             flexWrap: 'wrap',
                             flex: 1
                         }}>
-                        <Text style={{ fontWeight: '600' }}>
-                            {comment.user}
-                        </Text>
-                        <Text> {comment.comment} </Text>
+                        {post.comments.length > 1 ? 'all' : ''}
+                        {post.comments.length}
+                        {post.comments.length > 1 ? 'commnets' : 'comment'}
                     </Text>
-                </View>
-            ))
-        }
-    </>
-);
+                )
+            }
+        </View>
+    );
+}
+
+// Post Comment
+const PostComment = ({ post }: PostProps) => {
+    const scheme = useColorScheme() === 'dark' ? theme.colors.offWhite : theme.colors.black
+    return (
+        <>
+            {
+                post.comments.map((comment, index) => (
+                    <View
+                        key={index}
+                        style={{
+                            flexDirection: 'row',
+                            marginTop: 5
+
+                        }}>
+                        <Text
+                            style={{
+                                flexWrap: 'wrap',
+                                flex: 1,
+                                color: scheme
+                            }}>
+                            <Text style={{ fontWeight: '600' }}>
+                                {comment.user}
+                            </Text>
+                            <Text> {comment.comment} </Text>
+                        </Text>
+                    </View>
+                ))
+            }
+        </>
+    );
+}
 
 export default Post;
 
