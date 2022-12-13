@@ -82,14 +82,15 @@ const styles = StyleSheet.create({
   },
   unreadMessageContainer: {
     position: 'absolute',
-    top: -5,
-    right: -5,
+    top: -3,
+    right: -3,
     backgroundColor: '#ff3250',
     borderRadius: 25,
-    width: wp('5%'),
+    width: wp('4.2%'),
     height: hp('2.5%'),
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 3,
     zIndex: 100
   },
   unreadMessageText: {

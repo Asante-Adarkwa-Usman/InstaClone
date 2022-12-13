@@ -1,12 +1,16 @@
 import * as React from 'react';
-import {View, Text} from 'react-native';
-
-
+import {View, Text, Dimensions, StyleSheet} from 'react-native';
+import Feather from 'react-native-vector-icons/Feather';
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 const ReelsScreen = () => {
   return (
-    <View>
-      <Text> ReelsScreen</Text> 
+    <View style={{width:windowWidth, height:windowHeight}}>
+      <View>
+      <Text> Reels</Text>
+      <Feather name="camera" style={{fontSize:25}} />
+      </View> 
     </View>
   );
 };
