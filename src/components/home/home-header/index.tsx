@@ -78,16 +78,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: theme.spacing.m,
+    margin:5
 
   },
   unreadMessageContainer: {
     position: 'absolute',
-    top: -5,
-    right: -5,
+    //top: 0,
+    right: -4,
+    marginHorizontal: 4,
     backgroundColor: '#ff3250',
     borderRadius: 25,
-    width: wp('5%'),
-    height: hp('2.5%'),
+    width: wp('4.4%'),
+    height: hp('2.3%'),
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 100
