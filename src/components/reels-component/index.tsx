@@ -18,17 +18,11 @@ const ReelsComponent = () => {
 
   return (
     <SwiperFlatList 
+      keyExtractor={(item, index) => index.toString()}
       vertical={true}
       data={reelsData}
       onChangeIndex = {handleChangeIndexValue}
-        renderItem={
-          ({item, index}) => {
-            return (
-              <SingleReel item={item} index={index} currentIndex={currentIndex} />
-            )
-          }
-        }
-        keyExtractor={(item, index) => index.toString()}
+      renderItem={({item, index}) => <SingleReel item={item} index={index} currentIndex={currentIndex} />}
     />
   )
 }

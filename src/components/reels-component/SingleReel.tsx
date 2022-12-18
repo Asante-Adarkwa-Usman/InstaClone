@@ -13,7 +13,7 @@ type SingleReelProps = {
 const SingleReel = ({item, index, currentIndex}: SingleReelProps) => {
 
   const screenWidth = Dimensions.get("window").width;
-const screenHeight = Dimensions.get("window").height;
+  const screenHeight = Dimensions.get("window").height;
 
   
   const [mute, setMute] = React.useState(false);
@@ -37,7 +37,7 @@ const screenHeight = Dimensions.get("window").height;
     }}>
       <TouchableOpacity 
         style={{
-          position: 'absolute',
+          position: 'relative',
           width: screenWidth,
           height: screenHeight,
         }}
@@ -61,8 +61,9 @@ const screenHeight = Dimensions.get("window").height;
           }}
 
         />
-       {/* <Ionic name="volume-mute" style={{fontSize:20, color:'white'}} /> */}
+     {/* <Ionic name="volume-mute" style={{fontSize:25, color:'white'}} /> */}
       </TouchableOpacity>
+        
     </View>
   )
 }
